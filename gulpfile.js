@@ -9,10 +9,11 @@ var config = {
   devBaseUrl: 'http://localhost',
   paths: {
     appDirectory: '.',
-    html: "./index.html",
-    js: "./app/src/**/*.js",
-    ts: "./app/src/**/*.ts",
-    bundle: "./bundle.js" 
+    tsConfig: './tsconfig.json',
+    html: './index.html',
+    js: './app/src/**/*.js',
+    ts: './app/src/**/*.ts',
+    bundle: './bundle.js'
   }
 }
 
@@ -21,7 +22,7 @@ var config = {
 // target to 'ES6'
 gulp.task('ts', function() {
   //pulling tsConfig in here to mirror settings between inspection and compile
-  var tsConfig = JSON.parse(fs.readFileSync('./tsconfig.json','utf8'));  
+  var tsConfig = JSON.parse(fs.readFileSync(config.paths.tsConfig,'utf8'));  
   var newTsConfig = Object.assign(    
     tsConfig.compilerOptions, 
     { out: config.paths.bundle }
