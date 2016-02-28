@@ -5,10 +5,11 @@ interface IFeature {
   getName: () => string;
   getDescription: () => string;
   calcDaysToImplement: (size: string, numberOfDevs: number) => number;
-       
+  [otherProperties: string]: any; //allows extra properties such as 'somethingElse' below    
 }
 
-var Feature: IFeature = {
+var feature: IFeature = {
+  somethingElse: 'hey',  
   name: 'New feature',
   description: this.name + ' is a feature',
   size: 'M',  
@@ -35,4 +36,9 @@ var Feature: IFeature = {
     
     return daysToImplement;
   }
+}
+
+let feature2 = <IFeature>{
+  name: 'Newer feature',
+  description: this.name + ' is a feature'
 }

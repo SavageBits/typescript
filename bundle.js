@@ -1,4 +1,5 @@
-var Feature = {
+var feature = {
+    somethingElse: 'hey',
     name: 'New feature',
     description: this.name + ' is a feature',
     size: 'M',
@@ -23,4 +24,8 @@ var Feature = {
         }
         return daysToImplement;
     }
+};
+var feature2 = {
+    name: 'Newer feature',
+    description: this.name + ' is a feature'
 };
