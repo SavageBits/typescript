@@ -10,6 +10,7 @@ interface IFeature {
 
 var feature: IFeature = {
   somethingElse: 'hey',  
+  anotherProp: 'whee',
   name: 'New feature',
   description: this.name + ' is a feature',
   size: 'M',  

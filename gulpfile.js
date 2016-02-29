@@ -3,6 +3,7 @@ var open = require('gulp-open');
 var connect = require('gulp-connect');
 var fs = require('fs');
 var typescript = require('gulp-typescript');
+require('babel-polyfill');
 
 var config = {
   port: 9008,
@@ -23,10 +24,16 @@ var config = {
 gulp.task('ts', function() {
   //pulling tsConfig in here to mirror settings between inspection and compile
   var tsConfig = JSON.parse(fs.readFileSync(config.paths.tsConfig,'utf8'));  
+  
+  console.log(tsConfig.compilerOptions);
+  console.log(Object.assign);
+  
   var newTsConfig = Object.assign(    
     tsConfig.compilerOptions, 
     { out: config.paths.bundle }
   );
+  
+  console.log(newTsConfig);
   
   gulp.src(config.paths.ts)
     .pipe(typescript(newTsConfig))
