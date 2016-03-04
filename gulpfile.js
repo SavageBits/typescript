@@ -18,22 +18,35 @@ var config = {
   }
 }
 
+gulp.task('open', ['connect'], function() {
+  gulp.src('')
+    .pipe(open({
+        app: 'chrome',
+        uri: config.devBaseUrl + ':' + config.port + '/'
+    }));
+});
+
+gulp.task('connect', function() {
+  connect.server({
+    root: ['.'],
+    port: config.port,
+    base: config.devBaseUrl,
+    fallback: 'index.html',
+    livereload: true
+  });
+});
+
 //could compile TypeScript to ES6 and then
 // transpile to ES5 using babel by changing
 // target to 'ES6'
 gulp.task('ts', function() {
   //pulling tsConfig in here to mirror settings between inspection and compile
   var tsConfig = JSON.parse(fs.readFileSync(config.paths.tsConfig,'utf8'));  
-  
-  console.log(tsConfig.compilerOptions);
-  console.log(Object.assign);
-  
+    
   var newTsConfig = Object.assign(    
     tsConfig.compilerOptions, 
     { out: config.paths.bundle }
   );
-  
-  console.log(newTsConfig);
   
   gulp.src(config.paths.ts)
     .pipe(typescript(newTsConfig))
@@ -44,7 +57,7 @@ gulp.task('watch', function() {
   gulp.watch(config.paths.ts, ['ts']);
 });
 
-gulp.task('default', ['ts', 'watch']);
+gulp.task('default', ['ts', 'open', 'watch']);
 
 
 
