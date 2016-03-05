@@ -7,4 +7,4 @@ requirejs.config({
 
 // Start loading the main app file. Put all of
 // your application logic in there.
-requirejs(['app/dist/feature/feature']);
+requirejs(['app/dist/index']);
