@@ -44,16 +44,12 @@ gulp.task('connect', function() {
 gulp.task('ts', function() {
   var tsConfig = JSON.parse(fs.readFileSync(config.paths.tsConfig,'utf8'));  
     
-  var newTsConfig = Object.assign(    
-    tsConfig.compilerOptions
-  );  
-  
   browserify({
     basedir: config.paths.rootDirectory,
     debug: false  
   })    
     .add(config.paths.mainTs)
-    .plugin(tsify, newTsConfig)
+    .plugin(tsify, tsConfig.compilerOptions)
     .bundle()
     .on('error', function (error) { console.error(error.toString()); })
     .pipe(source(config.paths.bundle))
