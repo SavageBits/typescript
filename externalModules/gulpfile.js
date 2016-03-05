@@ -3,9 +3,6 @@ var open = require('gulp-open');
 var connect = require('gulp-connect');
 var fs = require('fs');
 var typescript = require('gulp-typescript');
-var browserify = require('browserify');
-var tsify = require('tsify');
-var source = require('vinyl-source-stream');
 require('babel-polyfill'); //for Object.assign()
 
 var config = {
@@ -20,7 +17,6 @@ var config = {
     html: './index.html',
     js: './app/src/**/*.js',
     ts: './app/src/**/*.ts',
-    mainTs: './app/src/index.ts',
     bundle: './bundle.js'    
   }
 }
@@ -52,26 +48,12 @@ gulp.task('ts', function() {
     
   var newTsConfig = Object.assign(    
     tsConfig.compilerOptions
-    //{ outFile: config.paths.bundle }
   );
-  
-  
+    
   //generates individual module directories containing .ts compiled to .js
-  // gulp.src(config.paths.ts)
-  //   .pipe(typescript(newTsConfig))
-  //   .pipe(gulp.dest(config.paths.distDirectory));
-  
-  
-  browserify({
-    basedir: config.paths.rootDirectory,
-    debug: false  
-  })    
-    .add(config.paths.mainTs)
-    .plugin(tsify, newTsConfig)
-    .bundle()
-    .on('error', function (error) { console.error(error.toString()); })
-    .pipe(source(config.paths.bundle))
-    .pipe(gulp.dest(config.paths.rootDirectory));
+  gulp.src(config.paths.ts)
+    .pipe(typescript(newTsConfig))
+    .pipe(gulp.dest(config.paths.distDirectory));     
 });
 
 gulp.task('watch', function() {
