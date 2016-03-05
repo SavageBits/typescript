@@ -38,11 +38,7 @@ gulp.task('connect', function() {
   });
 });
 
-//could compile TypeScript to ES6 and then
-// transpile to ES5 using babel by changing
-// target to 'ES6'
 gulp.task('ts', function() {
-  //pulling tsConfig in here to mirror settings between inspection and compile
   var tsConfig = JSON.parse(fs.readFileSync(config.paths.tsConfig,'utf8'));  
     
   var newTsConfig = Object.assign(    

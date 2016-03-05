@@ -39,14 +39,10 @@ gulp.task('connect', function() {
 });
 
 gulp.task('ts', function() {
-  var tsConfig = JSON.parse(fs.readFileSync(config.paths.tsConfig,'utf8'));  
-    
-  var newTsConfig = Object.assign(    
-    tsConfig.compilerOptions
-  );
+  var tsConfig = JSON.parse(fs.readFileSync(config.paths.tsConfig,'utf8'));     
     
   gulp.src(config.paths.ts)
-    .pipe(typescript(newTsConfig))
+    .pipe(typescript(tsConfig.compilerOptions))
     .pipe(gulp.dest(config.paths.distDirectory));     
 });
 
