@@ -14,3 +14,12 @@ All commands below are from your terminal or command line
 This will open the appropriate `index.html` in your default browser.
 
 @todo: add brief description of internal vs external modules 
+
+## Resources
+
+[TypeScript](http://www.typescriptlang.org/)  
+[Node.js](https://nodejs.org/en/)  
+[Gulp](http://gulpjs.com/)  
+[Browserify](https://www.npmjs.com/package/browserify)  
+[tsify](https://www.npmjs.com/package/tsify)  
+[Require.js](http://requirejs.org/)  
